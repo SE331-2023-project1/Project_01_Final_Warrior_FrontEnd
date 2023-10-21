@@ -17,9 +17,9 @@ import SideBar from './components/SideBar.vue'
   font-family: 'Poppins',sans-serif;
 }
 
-.flex-container {
+.flex {
   display: flex;
   min-height: 100vh;
-  background-color: #F8EAD8;
+  background-color: white;
 }
 </style>
