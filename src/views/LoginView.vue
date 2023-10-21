@@ -99,7 +99,7 @@ export default defineComponent({
   }
   .user-details .input-box input:focus,
   .user-details .input-box input:valid{
-    border-color:  #1F2937;
+    border-color:  #FFC288;
   }
   form input[type="radio"]{
     display: none;
@@ -117,10 +117,10 @@ export default defineComponent({
     font-weight: 500;
     border-radius: 5px;
     letter-spacing: 1px;
-    background: #1F2937;
+    background: #FFC288;
   }
   form .button input:hover{
-    background: #455368;
+    background: #ffac5f;
   }
   @media (min-width: 1024px){
     #app{
@@ -155,7 +155,7 @@ export default defineComponent({
     
   }
   .register {
-    color: #8190a6;
+    color: #FFC288;
   }
   </style>
   

@@ -156,7 +156,7 @@ import type { StudentItem } from '@/type';
   }
   .user-details .input-box input:focus,
   .user-details .input-box input:valid{
-    border-color:  #1F2937;
+    border-color:  #FFC288;
   }
   .user-details .input-box-img .details{
     display: block;
@@ -177,7 +177,7 @@ import type { StudentItem } from '@/type';
   }
   .user-details .input-box input:focus,
   .user-details .input-box input:valid{
-    border-color:  #1F2937;
+    border-color:  #FFC288;
   }
   
   form input[type="radio"]{
@@ -196,10 +196,10 @@ import type { StudentItem } from '@/type';
     font-weight: 500;
     border-radius: 5px;
     letter-spacing: 1px;
-    background: #1F2937;
+    background: #FFC288;
   }
   form .button input:hover{
-    background: #455368;
+    background: #ffac5f;
   }
   @media(max-width: 584px){
    .container{
@@ -226,6 +226,6 @@ import type { StudentItem } from '@/type';
     }
   }
   .login {
-    color: #8190a6;
+    color: #FFC288;
   }
   </style>
