@@ -19,6 +19,8 @@ import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 import AnnouncePage from '@/views/AnnouncePage.vue'
 import AboutView from '@/views/AboutView.vue'
+import StudentProfile from '@/views/StudentProfile.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -86,6 +88,15 @@ const router = createRouter({
       })
     },
     {
+      children:[
+        {
+          path: '/advisor-register',
+          name: 'advisor-register',
+          component: AddAdvisor
+        },
+      ]
+    },
+    {
       path: '/advisor/:id',
       name: 'advisor-layout',
       component: AdvisorLayoutView,
@@ -115,6 +126,7 @@ const router = createRouter({
           component: AdvisorDetailView,
           props: true
         },
+        
       ]
     },
     {
@@ -134,11 +146,6 @@ const router = createRouter({
       component: NetworkErrorView
     },
     {
-      path: '/addadvisor',
-      name: 'addadvisor',
-      component: AddAdvisor
-    },
-    {
       path: '/advisee',
       name: 'advisee-list',
       component: AdviseeListView,
@@ -146,51 +153,51 @@ const router = createRouter({
         page: parseInt((route.query?.page as string) || '1')
       })
     },
-    {
-      path: '/advisee/:id',
-      name: 'advisee-layout',
-      component: AdviseeLayoutView,
-      props: true,
-      beforeEnter: (to) => {
-        const id: number = parseInt(to.params.id as string)
-        const studentStore = useStudentStore()
-        const advisorStore = useAdvisorStore()
-        StudentService.getStudentById(id)
-          .then((response) => {
-            studentStore.setStudent(response.data)
-            AdvisorService.getAdvisorById(Number(response.data.advisorId))
-              .then((response) => {
-                advisorStore.setAdvisor(response.data)
-              })
-              .catch((error) => {
-                console.log(error)
-                if (error.response && error.response.status === 404) {
-                  return { name: '404-resource', params: { resource: 'id' } }
-                }
-              })
-          })
-          .catch((error) => {
-            console.log(error)
-            if (error.response && error.response.status === 404) {
-              return { name: '404-resource', params: { resource: 'id' } }
-            }
-          })
-      },
-      children: [
-        {
-          path: '',
-          name: 'student-detail',
-          component: StudentDetailView,
-          props: true
-        },
-        {
-          path: 'advisor',
-          name: 'advisor-detail-student',
-          component: AdvisorDetailView,
-          props: true
-        },
-      ]
-    },
+    // {
+    //   path: '/advisee/:id',
+    //   name: 'advisee-layout',
+    //   component: AdviseeLayoutView,
+    //   props: true,
+    //   beforeEnter: (to) => {
+    //     const id: number = parseInt(to.params.id as string)
+    //     const studentStore = useStudentStore()
+    //     const advisorStore = useAdvisorStore()
+    //     StudentService.getStudentById(id)
+    //       .then((response) => {
+    //         studentStore.setStudent(response.data)
+    //         AdvisorService.getAdvisorById(Number(response.data.advisorId))
+    //           .then((response) => {
+    //             advisorStore.setAdvisor(response.data)
+    //           })
+    //           .catch((error) => {
+    //             console.log(error)
+    //             if (error.response && error.response.status === 404) {
+    //               return { name: '404-resource', params: { resource: 'id' } }
+    //             }
+    //           })
+    //       })
+    //       .catch((error) => {
+    //         console.log(error)
+    //         if (error.response && error.response.status === 404) {
+    //           return { name: '404-resource', params: { resource: 'id' } }
+    //         }
+    //       })
+    //   },
+    //   children: [
+    //     {
+    //       path: '',
+    //       name: 'student-detail',
+    //       component: StudentDetailView,
+    //       props: true
+    //     },
+    //     {
+    //       path: 'advisor',
+    //       name: 'advisor-detail-student',
+    //       component: AdvisorDetailView,
+    //       props: true
+    //     },
+    //   ]
+    // },
     {
       path: '/announcement',
       name: 'announcement',
@@ -211,6 +218,10 @@ const router = createRouter({
       name: 'about',
       component: AboutView
     },
+      path: '/student-profile',
+      name: 'student-profile',
+      component: StudentProfile
+    }
     
   ],
   scrollBehavior(to, from, savedPosition) {

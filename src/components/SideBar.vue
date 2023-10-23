@@ -36,33 +36,17 @@
         :class="{'hidden': !isOpen, 'block': isOpen }"
         class="w-full flex-grow lg:flex lg:items-center lg:w-auto"
       >
-      <div class="text-sm lg:flex-grow">
-          <div class="flex flex-col lg:flex-row">
-            <li v-if="authStore.userRole == 'ROLE_ADMIN'"
-              class="font-dm mb-2 lg:mb-0 lg:mr-4 hover:bg-white p-3 rounded-md flex items-center">
-              <RouterLink to="/">Student</RouterLink>
-            </li>
-            <li v-if="authStore.userRole == 'ROLE_ADMIN'"
-              class="font-dm mb-2 lg:mb-0 lg:mr-4 hover:bg-white p-3 rounded-md flex items-center">
-              <RouterLink to="/advisor">Advisor</RouterLink>
-            </li>
-            <li v-if="authStore.userRole == 'ROLE_ADMIN'"
-              class="font-dm mb-2 lg:mb-0 lg:mr-4 hover:bg-white p-3 rounded-md flex items-center">
-              <RouterLink to="/announcement">Announcement</RouterLink>
-            </li>
-          </div>
-          <div class="flex flex-col lg:flex-row">
-            <li v-if="authStore.userRole == 'ROLE_STUDENT'"
-              class="font-dm mb-2 lg:mb-0 lg:mr-4 hover:bg-white p-3 rounded-md flex items-center">
-              <RouterLink to="/">Student</RouterLink>
-            </li>
-            <li v-if="authStore.userRole == 'ROLE_STUDENT'"
-              class="font-dm mb-2 lg:mb-0 lg:mr-4 hover:bg-white p-3 rounded-md flex items-center">
-              <RouterLink to="/announcement">Announcement</RouterLink>
-            </li>
-          </div>
+        <div class="text-sm lg:flex-grow">
+          <router-link to="/" class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4">
+            Student
+          </router-link>
+          <router-link to="/advisor" class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4">
+            Advisor
+          </router-link>
+          <router-link to="/announcement" class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4">
+            Announcement
+          </router-link>
         </div>
-
         <div class="text-sm">
             <li v-if="authStore.userRole == 'ROLE_ADMIN'"
               class="font-dm mb-2 lg:mb-0 lg:mr-4 hover:bg-white p-3 rounded-md flex items-center">
@@ -83,10 +67,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useMessageStore } from '@/stores/message';
-import { storeToRefs } from 'pinia';
-import { useAuthStore } from '@/stores/auth';
+import { computed, ref, onMounted, onUnmounted } from 'vue'
+import { RouterLink, RouterView, useRoute } from 'vue-router'
 import { useRouter } from 'vue-router';
 
 const isOpen = ref(false);
@@ -106,23 +88,16 @@ function logout() {
 if (token && userRole) {
   authStore.reload(token, JSON.parse(userRole));
 } else {
-  authStore.logout();
+  authStore.logout()
 }
-</script>
 
-<script lang="ts">
-
-export default {
-  setup() {
-    const isOpen = ref(false);
-
-    return {
-      isOpen,
-      authStore, // Make sure to export the authStore as well
-      logout, // Export the logout function
-    };
-  },
-};
+// export default {
+//   data() {
+//     return {
+//       isOpen: false,
+//     };
+//   },
+// };
 </script>
 
 <style>
