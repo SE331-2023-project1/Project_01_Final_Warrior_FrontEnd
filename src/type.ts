@@ -11,6 +11,7 @@ export interface StudentItem {
   name: string
   surname: string
   image: string
+  department: string
   advisorId: string
   courseId: string[]
 }

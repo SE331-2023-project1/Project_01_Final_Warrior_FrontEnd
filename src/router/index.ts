@@ -18,7 +18,7 @@ import AdviseeLayoutView from '@/views/details/AdviseeLayoutView.vue'
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 import AnnouncePage from '@/views/AnnouncePage.vue'
-
+import AboutView from '@/views/AboutView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -205,6 +205,11 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: RegisterView
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: AboutView
     },
     
   ],

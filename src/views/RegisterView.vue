@@ -87,7 +87,7 @@ import type { StudentItem } from '@/type';
               <input type="password" placeholder="Confirm Password" required>
             </div>
             <div class="input-box-img">
-              <label for="img">Profile image </label>
+              <span class="details">Profile image </span>
               <input type="file" id="img" name="img" accept="image/*" @change="handleImageUpload">
             </div>
           </div>
@@ -175,8 +175,8 @@ import type { StudentItem } from '@/type';
     border-bottom-width: 2px;
     transition: all 0.3s ease;
   }
-  .user-details .input-box input:focus,
-  .user-details .input-box input:valid{
+  .user-details .input-box-img input:focus,
+  .user-details .input-box-img input:valid{
     border-color:  #FFC288;
   }
   
